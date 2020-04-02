@@ -4,6 +4,7 @@
   "description": "Legendary Bot",
   "main": "bot.js",
   "dependencies": {
+    "canvas": "^2.6.1",
     "discord.js": "^12.1.1",
     "ms": "^2.1.2"
   },
