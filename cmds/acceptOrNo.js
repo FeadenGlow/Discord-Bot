@@ -14,6 +14,14 @@ if(args[0] == "принять"){
         .setDescription("Вы подтвердили обмен, вскоре ваши вещи будут доставлены.");
     return message.channel.send(embed);
 }
+if(args[0] == "подтвердить"){
+    u.ready = true;
+    let embed = new MessageEmbed()
+    .setTitle("Fight.org")
+    .setColor(0xb40000)
+    .setDescription("Вы подтвердили битву!");
+    return message.channel.send(embed);
+}
 if(args[0] == "зайти"){
     if(u.tunnel == true && u.area == "Замкнутая пещерка"){
     let embed = new MessageEmbed()
