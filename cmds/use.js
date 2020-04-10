@@ -272,7 +272,7 @@ module.exports.run = async (bot, message, args, profile)=>{
     if(args[0] == "мешок"){
         if(u.activeItem == "Таинственный мешок"){
         u.activeItem = "У вас нету активного предмета";
-        let global = Math.round(Math.random() * (7 - 1) + 1);
+        let global = Math.round(Math.random() * (6 - 1) + 1);
         
         if(global == 1){
         u.activeItem ="Хлипкая кирка";
@@ -318,16 +318,7 @@ module.exports.run = async (bot, message, args, profile)=>{
             .setDescription("Вы получили <:a_sfera_nasishenosti2:573817442711896074>");
         return message.channel.send(embed);   
         }
-
         if(global == 6){
-        u.activeItem = "Благословение кирки";
-        let embed = new MessageEmbed()
-            .setTitle("OneStorage.org")
-            .setColor(0x000000)
-            .setDescription("Вы получили Благословение кирки");
-        return message.channel.send(embed); 
-        }
-        if(global == 7){
         let coinchance = Math.round(Math.random() * (350 - 50) + 50);
         let embed = new MessageEmbed()
             .setTitle("OneStorage.org")

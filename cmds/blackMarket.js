@@ -50,21 +50,6 @@ module.exports.run = async (bot, message, args, profile)=>{
             .setDescription("Вы продали <:cristall_boga:695684747879514232>-ы и получили за них: "+sold+"<:loxovskoi_mc:609154702533197845>-ов.(100<:loxovskoi_mc:609154702533197845>-ов стоит проход на чёрный рынок)");
         return message.channel.send(embed);
     }
-    /*if(args[0] == "благословение"){
-        if(u.activeItem == "Благословение кирки"){
-            u.activeItem = "У вас нету активного предмета";
-            u.acoin += 75;
-            let embed = new MessageEmbed()
-                .setTitle("BlackMarket.org")
-                .setDescription("Вы успешно продали предмет.");
-            return message.channel.send(embed);
-        }
-        let embed = new MessageEmbed()
-            .setTitle("BlackMarket.org")
-            .setDescription("У вас нету такого предмета.");
-        return message.channel.send(embed);
-    }*/
-
 
     if(args[0] == "кирка"){
         if(u.activeItem == "Хлипкая кирка"){

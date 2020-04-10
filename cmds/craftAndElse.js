@@ -246,6 +246,13 @@ module.exports.run = async (bot, message, args, profile)=>{
                 }
             }
         }
+        else{
+            let embed1 = new MessageEmbed()
+                .setTitle("CraftEveryDay.org")
+                .setColor(0xb9b970)
+                .setDescription("Вы не открыли пьедестал");
+            return message.channel.send(embed1);
+        }
     }
 
     if(args[0] == "принтер"){
@@ -335,6 +342,13 @@ module.exports.run = async (bot, message, args, profile)=>{
                     },1000*10*value)
                 }
             }
+        }
+        else{
+        let embed1 = new MessageEmbed()
+            .setTitle("CraftEveryDay.org")
+            .setColor(0xb9b970)
+            .setDescription("У вас нету слесарского станка");
+        return message.channel.send(embed1);
         }
     }
     
@@ -444,6 +458,13 @@ module.exports.run = async (bot, message, args, profile)=>{
                     },1000*30*value)
                 }
             }
+        }
+        else{
+            let embed1 = new MessageEmbed()
+                .setTitle("CraftEveryDay.org")
+                .setColor(0xb9b970)
+                .setDescription("У вас нету печи");
+            return message.channel.send(embed1);
         }
     }
 };

@@ -4,7 +4,7 @@ const { Client, MessageEmbed } = require('discord.js');
 module.exports.run = async (bot, message, args,profile)=>{
     let uid = message.author.id;
     let u = profile[uid];
-    if(args[0] == "атака"){
+    if(args[0] == "атака" && u.check == true){
         u.typeattack = "атака";
     }
 };

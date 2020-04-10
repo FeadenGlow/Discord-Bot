@@ -65,6 +65,7 @@ bot.on('message', async message => {
           furnace: false,
           printer: false,
           tree: false,
+          check:false,
           used2:false,
           typeattack:"не выбрано",
           counter:0,

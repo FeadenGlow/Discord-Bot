@@ -167,6 +167,13 @@ module.exports.run = async (bot, message, args, profile)=>{
             .setDescription("Вы открыли сундук, в нём лежит:\n1. "+u.itemc1+"\n2. "+u.itemc2+"\n3. "+u.itemc3);
         return message.channel.send(embed);
     }//864701
+    else{
+        let embed = new MessageEmbed()
+        .setTitle("Storage.use")
+        .setColor(0x864701)
+        .setDescription("Вы не создали сундук");
+    return message.channel.send(embed);
+    }
 };
 module.exports.help = {
     name: "сундук"
