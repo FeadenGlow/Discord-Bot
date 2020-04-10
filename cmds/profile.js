@@ -5,7 +5,7 @@ const Canvas = require("canvas");
 module.exports.run = async (bot, message, args, profile)=>{
     const uid = message.author.id;
     const u = profile[uid];
-    const { xp, lvl, mcoin, battles } = u;
+    const { xp, lvl, mcoin, battles, acoin } = u;
 
     const canvas = Canvas.createCanvas(285, 300);
     const ctx = canvas.getContext('2d');
@@ -27,9 +27,9 @@ module.exports.run = async (bot, message, args, profile)=>{
     ctx.fillText(xpText, canvas.width / 2, 206);
 
     // MaxCoins
-    const walletText = `Wallet: ${mcoin}`;
+    const walletText = `${mcoin} mcoins,\t${acoin} unpolished mcoins`;
     ctx.font = 'bold 14px Arial';
-    ctx.fillText(walletText, canvas.width / 2, 253);
+    ctx.fillText(walletText, 142, 253);
 
     // Battles
     const battlesText = `Battles: ${battles}`;

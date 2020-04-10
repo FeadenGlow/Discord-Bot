@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args)=>{
     }
     message.channel.send("Бот скажет это сообщение через "+ms(ms(Timer), {long: true}))
     setTimeout(function(){
-        message.channel.send(args[1])
+        message.channel.send(args.slice(1).join(" "))
     }, ms(Timer));
 };
 module.exports.help = {

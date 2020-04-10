@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args, profile)=>{
     const embed = new MessageEmbed()
     .setTitle("MaxCoins.ly")
       .setColor(0xff0000)
-      .setDescription("У вас на счёту: "+u.mcoin+" <:mc:694314339980804166>-ов");
+      .setDescription("У вас на счёту: "+u.mcoin+" <:mc:694314339980804166>-ов\n\t"+u.acoin+"<:loxovskoi_mc:609154702533197845>-ов");
       message.channel.send(embed);
 };
 module.exports.help = {

@@ -50,7 +50,8 @@ module.exports.run = async (bot, message, args)=>{
     const embed = new MessageEmbed()
       .setTitle("NoteServer.ly")
       .setColor(0x0000ff)
-      .setDescription("Ваши заметки: \n1."+u.note1+"\n2."+u.note2+"\n3."+u.note3+"\n4."+u.note4+"\n5."+u.note5+"\nЧтобы добавить или заменить заметку напишите: .зам пом <номер заметки> <текст сообщения>");
+      .setDescription("Ваши заметки: \n1."+u.note1+"\n2."+u.note2+"\n3."+u.note3+"\n4."+u.note4+"\n5."+u.note5)
+      .setFooter("Чтобы добавить или заменить заметку напишите: .зам пом <номер заметки> <текст сообщения>");
     message.channel.send(embed);
        
 }

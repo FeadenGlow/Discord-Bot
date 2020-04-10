@@ -26,6 +26,7 @@ bot.on('ready', () => {
   bot.generateInvite(["ADMINISTRATOR"]).then(link =>{
       console.log(link);
   })
+  bot.user.setActivity(".хелп",{type:"WATCHING"});
 });
 
 bot.on('message', async message => {
@@ -39,6 +40,49 @@ bot.on('message', async message => {
           xp:0,
           lvl:0,
           mcoin:0,
+          acoin:20,
+          crystalls:0,
+          used: false,
+          activeItem:"У вас нету активного предмета",
+          pearls:0,
+          iron_plate:0,
+          iron_ore:0,
+          gold_plate:0,
+          gold_ore:0,
+          stump:0,
+          wood:0,
+          stone:0,
+          hp:100,
+          atk:20,
+          minerals:0,
+          steel:0,
+          planks:0,
+          tools:0,
+          etools:false,
+          tunnel:false,
+          stand:false,
+          workbench:false,
+          furnace: false,
+          printer: false,
+          tree: false,
+          used2:false,
+          typeattack:"не выбрано",
+          counter:0,
+          class:"Вы не выбрали класс",
+          chest:false,
+          itemc1:"<пусто>",
+          itemc2:"<пусто>",
+          itemc3:"<пусто>",
+          used3: false,
+          ready:false,
+          area:"В доме",
+          used4:false,
+          locksmith:false,
+          blessing:false,
+          courage:false,
+          corpse:false,
+          cave:false,
+          respect:0,
       }
   }
   let u = profile[uid];
@@ -55,8 +99,8 @@ bot.on('message', async message => {
           note3:"<здесь будет ваша заметка>",
           note4:"<здесь будет ваша заметка>",
           note5:"<здесь будет ваша заметка>",
-      }
-  }
+        }
+    }
 
   fs.writeFile('./profile.json',JSON.stringify(profile),(err) =>{
       if(err) console.log(err);
@@ -72,36 +116,9 @@ bot.on('message', async message => {
   if(cmd) cmd.run(bot, message, args, profile, note);
 });
 
-bot.on('message', (message) => {
+/*bot.on('message', (message) => {
     let user = message.author.username;
-    if (message.content == "бот") {
-        message.channel.send("Я тут! Привет, "+user+"!");
-    };
-    if (message.content == "+") {
-        confrontation();
-    };
-    if (message.content == "Соси хуй") {
-        message.channel.send("Ок, подставляй.");
-    };
-    if (message.content == "Кто из нас лох, Pris3Rag3 иль я?") {
-        message.channel.send("Довольно сложный выбор, скорее всего Pris3Rag3, да, определённо он.");
-    };
-    if (message.content == "ну пж") {
-        message.channel.send("Ну ок, ща сделаю, подожди минуту.");
-    };
-    if (message.content == "минута прошла, где калькулятор") {
-        message.channel.send("Нету, АЗЗАЗАЗАЗАЗАЗАЗЗАЗА ВОТ Э НУУУУБ ЛМАОООООООООООООООО.");
-    };
-    if (message.content == "тест") {
-        message.channel.send(NaN);
-    };
-    if (message.content.startsWith(":mc:")) {
-        message.channel.send(":mc:");
-    };
-    function confrontation(){
-        message.channel.send("Варификация пройдена.");
-    }
-});
+});*/
 
 
 bot.login(token);
