@@ -78,7 +78,7 @@ module.exports.run = async (bot, message, args, profile)=>{
                 let embed = new MessageEmbed()
                     .setTitle("CraftEveryDay.org")
                     .setColor(0xb9b970)
-                    .setDescription("Вы успешно создали 3х железных инструментов");
+                    .setDescription("Вы успешно создали электронные инструменты");
                 return message.channel.send(embed);
                 }
                 else{
@@ -266,9 +266,9 @@ module.exports.run = async (bot, message, args, profile)=>{
             }
             if(args[1] == "стальной"){
                 if(u.steel >= 2 && u.iron_plate >= 2 && u.crystalls >= 1){
-                    u.iron_plate -= 5;
-                    u.wood -= 100;
-                    u.stump -= 20;
+                    u.iron_plate -= 2;
+                    u.steel -= 2;
+                    u.crystalls -= 1;
                     u.activeItem = "Стальной бур";
                     let embed = new MessageEmbed()
                         .setTitle("CraftEveryDay.org")
@@ -433,7 +433,7 @@ module.exports.run = async (bot, message, args, profile)=>{
 
             if(args[1] == "сталь"){
                 let value = parseInt(args[2]);
-                if(isNaN(value) || value < 1 || u.stump < value*10){
+                if(isNaN(value) || value < 1 || u.stump < 30){
                     let embed = new MessageEmbed()
                     .setTitle("CraftEveryDay.org")
                     .setColor(0xb9b970)
@@ -442,11 +442,11 @@ module.exports.run = async (bot, message, args, profile)=>{
                 }
                 if(u.iron_plate >= value*2){
                     u.iron_plate -= value *2;
-                    u.stump -= value * 10;
+                    u.stump -= 30;
                     let embed = new MessageEmbed()
                         .setTitle("CraftEveryDay.org")
                         .setColor(0xb9b970)
-                        .setDescription("Вы закинули в печь "+ value*10 +"<:literally_a_stump:695773481270378556>, <:steel:697162647589748816> переплавится через "+ value*30+" секунд");
+                        .setDescription("Вы закинули в печь 30 <:literally_a_stump:695773481270378556>, <:steel:697162647589748816> переплавится через "+ value*30+" секунд");
                     message.channel.send(embed);
                     setTimeout(function(){
                     let embed1 = new MessageEmbed()

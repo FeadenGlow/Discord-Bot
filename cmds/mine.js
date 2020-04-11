@@ -5,13 +5,6 @@ let ms = require("ms");
 module.exports.run = async (bot, message, args, profile)=>{
     let uid = message.author.id;
     let u = profile[uid];
-    if(u.used){
-        const embed1 = new MessageEmbed()
-              .setTitle("MINECOIN.hack.com")
-              .setColor(0xffff00)
-              .setDescription("Вам нужно отдохнуть 2 минуты!");
-        return message.channel.send(embed1);
-    }
     if(u.area == "Кладбище"){
         let rand = Math.round(Math.random() * (5 - 1) + 1);
         
@@ -43,11 +36,7 @@ module.exports.run = async (bot, message, args, profile)=>{
         u.counter = 0;
     }
     if(u.counter == 3){
-        u.used = true;
         u.area = "В доме";
-        setTimeout(function(){
-            u.used = false;
-        },1000*2*60)
         let chanceGoldOre = Math.round(Math.random() * (10 - 1) + 1);
         let chanceMaxCoins = Math.round(Math.random() * (2 - 1) + 1);
         let resourse1;
@@ -91,7 +80,7 @@ module.exports.run = async (bot, message, args, profile)=>{
         }
         if(chanceMaxCoins == 2){
             let value = Math.round(Math.random() * (30 - 1) + 1);
-            if(u.activeItem = "Железная кирка"){
+            if(u.activeItem == "Железная кирка"){
                 value = Math.round(Math.random() * (50 - 20) + 20);
             }
             u.acoin += value;
@@ -99,7 +88,7 @@ module.exports.run = async (bot, message, args, profile)=>{
         }
         else {
             let value = Math.round(Math.random() * (30 - 1) + 1);
-            if(u.activeItem = "Железная кирка"){
+            if(u.activeItem == "Железная кирка"){
                 value = Math.round(Math.random() * (30 - 8) + 8);
             }
             u.stone += value;
@@ -135,6 +124,7 @@ module.exports.run = async (bot, message, args, profile)=>{
                             .setDescription("Вы решили собрать всю <:gold_ore:695792535049601094> со стены и вернуться домой , вы получили "+value3+" <:gold_ore:695792535049601094>");
                         return message.channel.send(embed2);
                     }
+                    else if(u.tunnel){return}
                     else {
                         u.area = "В доме"
                         let embed2 = new MessageEmbed()

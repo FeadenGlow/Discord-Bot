@@ -87,6 +87,9 @@ bot.on('message', async message => {
       }
   }
   let u = profile[uid];
+  if(u.area != "Замкнутая пещерка"){
+    u.corpse = false;
+  }
   u.xp++;
   if(u.xp >= u.lvl*10){
       u.xp = 0;

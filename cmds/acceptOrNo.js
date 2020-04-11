@@ -20,13 +20,11 @@ if(args[0] == "зайти"){
         .setTitle("MysteryCave.ly")
         .setColor(0xffffff)
         .setDescription("Вы решились зайти внутрь. Тут какая-то неприятная атмосфера, просто вытягивающая из вас жизненные силы.\nВы осмелились подойти к трупу. Он весь в нарядной одежде, да как-то к вам в голову пробилось, что он богоискатель.\nУ него в руке место под жемчужину. Положить её в его ладонь?");
-    prop = true;
     return message.channel.send(embed);
     }
 }
 if(args[0] == "положить"){
-    if(prop == true){
-        prop = false;
+    if(u.area == "Замкнутая пещерка"){
         u.tunnel = false;
     if(u.pearls >= 1){
         u.pearls -= 1;
@@ -48,8 +46,7 @@ if(args[0] == "положить"){
 }
 
 if(args[0] == "не"){
-    if(prop == true){
-        prop = false;
+    if(u.area == "Замкнутая пещерка"){
         u.tunnel = false;
     if(u.pearls >= 1){
         u.pearls -= 1;

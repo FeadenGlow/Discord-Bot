@@ -232,6 +232,7 @@ module.exports.run = async (bot, message, args, profile)=>{
         if(u.activeItem == "Стальной бур"){
             if(u.area == "Секретный туннель"){
                 u.area = "Замкнутая пещерка";
+                u.activeItem = "У вас нету активного предмета"
                 u.tunnel = true;
             let embed = new MessageEmbed()
                 .setTitle("MINECOIN.hack.com")
