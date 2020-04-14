@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args)=>{
             u.note1 = args.slice(2).join(" ");
             const embed1 = new MessageEmbed()
              .setTitle("NoteServer.ly")
-             .setColor(0x0000ff)
+             .setColor('#286cbd')
              .setDescription("Заметка 1 изменена");
             return message.channel.send(embed1);
         }
@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args)=>{
             u.note2 = args.slice(2).join(" ");
             const embed2 = new MessageEmbed()
              .setTitle("NoteServer.ly")
-             .setColor(0x0000ff)
+             .setColor('#286cbd')
              .setDescription("Заметка 2 изменена");
             return message.channel.send(embed2);
         }
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args)=>{
             u.note3 = args.slice(2).join(" ");
             const embed3 = new MessageEmbed()
              .setTitle("NoteServer.ly")
-             .setColor(0x0000ff)
+             .setColor('#286cbd')
              .setDescription("Заметка 3 изменена");
             return message.channel.send(embed3);
         }
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args)=>{
             u.note4 = args.slice(2).join(" ");
             const embed4 = new MessageEmbed()
              .setTitle("NoteServer.ly")
-             .setColor(0x0000ff)
+             .setColor('#286cbd')
              .setDescription("Заметка 4 изменена");
             return message.channel.send(embed4);
         }
@@ -42,14 +42,14 @@ module.exports.run = async (bot, message, args)=>{
             u.note5 = args.slice(2).join(" ");
             const embed5 = new MessageEmbed()
              .setTitle("NoteServer.ly")
-             .setColor(0x0000ff)
+             .setColor('#286cbd')
              .setDescription("Заметка 5 изменена");
             return message.channel.send(embed5);
         }
     }
     const embed = new MessageEmbed()
       .setTitle("NoteServer.ly")
-      .setColor(0x0000ff)
+      .setColor('#286cbd')
       .setDescription("Ваши заметки: \n1."+u.note1+"\n2."+u.note2+"\n3."+u.note3+"\n4."+u.note4+"\n5."+u.note5)
       .setFooter("Чтобы добавить или заменить заметку напишите: .зам пом <номер заметки> <текст сообщения>");
     message.channel.send(embed);
