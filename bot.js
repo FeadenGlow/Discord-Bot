@@ -8,6 +8,7 @@ let token = config.token;
 let prefix = config.prefix;
 let profile = require("./profile.json");
 let note = require("./note.json");
+let topics = require('./topics.json');
 
 fs.readdir('./cmds/',(err,files)=>{
     if(err) console.log(err);
@@ -107,12 +108,19 @@ bot.on('message', async message => {
         }
     }
 
+    if (!topics) {
+        topics = [];
+    }
+
   fs.writeFile('./profile.json',JSON.stringify(profile),(err) =>{
       if(err) console.log(err);
   })
   fs.writeFile('./note.json',JSON.stringify(note), (err) =>{
       if(err) console.log(err);
   })
+  fs.writeFile('./topics.json',JSON.stringify(topics), err => {
+    if (err) console.log(err);
+  });
   let messageArray = message.content.split(" ");
   let command = messageArray[0].toLowerCase();
   let args = messageArray.slice(1);
