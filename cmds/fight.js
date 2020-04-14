@@ -4,6 +4,8 @@ const { Client, MessageEmbed } = require('discord.js');
 module.exports.run = async (bot, message, args, profile) => {
     let uid = message.author.id;
     let u = profile[uid];
+    let nmOrM;
+    let coin = parseInt(args[1]);
     if (args[0] == "принять") {
         u.ready = true;
         let embed = new MessageEmbed()
@@ -12,7 +14,48 @@ module.exports.run = async (bot, message, args, profile) => {
             .setDescription("Вы подтвердили битву!");
         return message.channel.send(embed);
     }
-    let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    if(message.guild.member(message.mentions.users.first()) == null){
+        let embed = new MessageEmbed()
+            .setTitle("Fight.org")
+            .setColor(0xb40000)
+            .setDescription("Вы неправильно указали имя пользователя!");
+        return message.channel.send(embed);
+    }
+    if(args[2] == "нм"){
+        nmOrM = 1;
+        if(isNaN(coin)){
+            let embed = new MessageEmbed()
+                .setTitle("Fight.org")
+                .setColor(0xb40000)
+                .setDescription("Вы неправильно указали число ставки!");
+            return message.channel.send(embed);
+        }
+        if(coin <= 0){
+            let embed = new MessageEmbed()
+                .setTitle("Fight.org")
+                .setColor(0xb40000)
+                .setDescription("Нужно указать число больше чем 0!");
+            return message.channel.send(embed);
+        }
+    }
+    if(args[2] == "м"){
+        nmOrM = 0;
+        if(isNaN(coin)){
+            let embed = new MessageEmbed()
+                .setTitle("Fight.org")
+                .setColor(0xb40000)
+                .setDescription("Вы неправильно указали число ставки!");
+            return message.channel.send(embed);
+        }
+        if(coin <= 0){
+            let embed = new MessageEmbed()
+                .setTitle("Fight.org")
+                .setColor(0xb40000)
+                .setDescription("Нужно указать число больше чем 0!");
+            return message.channel.send(embed);
+        }
+    }
+    let pUser = message.guild.member(message.mentions.users.first());// || message.guild.members.get(args[0]);
     let filter = m => m.author.id === message.author.id;
     let filter2 = m => m.author.id === pUser.id;
     let pu = profile[pUser.id];
@@ -94,12 +137,20 @@ module.exports.run = async (bot, message, args, profile) => {
                             .setColor(0xb40000)
                             .setDescription(`Вы использовали действие. Потратив 1 очко действия`);
                         message.channel.send(embed);
-                    }*/
-                    if (isNaN(num) || num > number1 || num < number2) {
+                    }
+                    else */if (isNaN(num) || num > number1 || num < number2) {
                         let embed = new MessageEmbed()
                             .setTitle("Fight.org")
                             .setColor(0xb40000)
                             .setDescription(`Вы неправильно записали число. Битва окончена,${pUser} победил.`);
+                        if(nmOrM == 1){
+                            pu.acoin += coin;
+                            u.acoin -= coin;
+                        }
+                        if(nmOrM == 0){
+                            pu.mcoin += coin;
+                            u.mcoin -= coin;
+                        }
                         pu.hp = 5;
                         u.hp = 5;
                         pu.showHp = "Здоров";
@@ -134,19 +185,19 @@ module.exports.run = async (bot, message, args, profile) => {
                                 }
                                 let attackInfo;
                                 if (pu.hp == 4) {
-                                    attackInfo = "потрёпали " + pUser;
+                                    attackInfo = `потрепали ${pUser}`;
                                     pu.showHp = "Потрёпан";
                                 }
                                 if (pu.hp == 3) {
-                                    attackInfo = "ранили " + pUser;
+                                    attackInfo = `ранили ${pUser}`;
                                     pu.showHp = "Ранен";
                                 }
                                 if (pu.hp == 2) {
-                                    attackInfo = "истерзали " + pUser;
+                                    attackInfo = `истерзали ${pUser}`;
                                     pu.showHp = "Истерзан";
                                 }
                                 if (pu.hp == 1) {
-                                    attackInfo = "почти довели " + pUser + " до смерти";
+                                    attackInfo = `почти довели ${pUser} до смерти`;
                                     pu.showHp = "Присмерти";
                                 }
                                 if (pu.hp <= 0) {
@@ -156,6 +207,14 @@ module.exports.run = async (bot, message, args, profile) => {
                                     u.showHp = "Здоров";
                                     pu.pointsMovement = 3;
                                     u.pointsMovement = 3;
+                                    if(nmOrM == 1){
+                                        pu.acoin -= coin;
+                                        u.acoin += coin;
+                                    }
+                                    if(nmOrM == 0){
+                                        pu.mcoin -= coin;
+                                        u.mcoin += coin;
+                                    }
                                     let embed = new MessageEmbed()
                                         .setTitle("Fight.org")
                                         .setColor(0xb40000)
@@ -221,6 +280,14 @@ module.exports.run = async (bot, message, args, profile) => {
                                 u.showHp = "Здоров";
                                 pu.pointsMovement = 3;
                                 u.pointsMovement = 3;
+                                if(nmOrM == 1){
+                                    pu.acoin -= coin;
+                                    u.acoin += coin;
+                                }
+                                if(nmOrM == 0){
+                                    pu.mcoin -= coin;
+                                    u.mcoin += coin;
+                                }
                                 return message.channel.send(embed);
                             }
                             else {
@@ -271,6 +338,14 @@ module.exports.run = async (bot, message, args, profile) => {
                                         u.showHp = "Здоров";
                                         pu.pointsMovement = 3;
                                         u.pointsMovement = 3;
+                                        if(nmOrM == 1){
+                                            pu.acoin += coin;
+                                            u.acoin -= coin;
+                                        }
+                                        if(nmOrM == 0){
+                                            pu.mcoin += coin;
+                                            u.mcoin -= coin;
+                                        }
                                         let embed = new MessageEmbed()
                                             .setTitle("Fight.org")
                                             .setColor(0xb40000)
