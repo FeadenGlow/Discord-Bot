@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const topics = require('../topics.json');
+const topics = require('../data/topics.json');
 
 const run = async (bot, message, args) => {
     /**

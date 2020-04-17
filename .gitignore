@@ -1,1 +1,7 @@
 /node_modules
+
+/src/data/botconfig.json
+/src/data/inventory.json
+/src/data/note.json
+/src/data/profiles.json
+/src/data/topics.json
