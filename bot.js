@@ -3,11 +3,10 @@ const { Client, Collection } = require('discord.js');
 const botClient = new Client();
 botClient.commands = new Collection();
 
-const { token, commandsPrefix } = require('./src/data/botConfig.json');
+const { token, commandsPrefix } = require('./data/botConfig.json');
 
-const defaultProfile = require('./src/data/defaultProfile.json');
-const profiles = require('./src/data/profiles.json');
-const topics = require('./src/data/topics.json');
+const defaultProfile = require('./data/defaultProfile.json');
+const profiles = require('./data/profiles.json');
 
 fs.readdir('./src/commands/', (err, files) => {
 	if (err) throw new Error(err);
@@ -60,16 +59,19 @@ botClient.on('message', async message => {
 	}
 
 	const newProfilesFileContent = {...profiles, [profileId]: profile};
-	fs.writeFile('./src/data/profiles.json', JSON.stringify(newProfilesFileContent), (err) => {
+	fs.writeFile('./data/profiles.json', JSON.stringify(newProfilesFileContent), (err) => {
 		if (err) throw new Error(err);
 	});
 
 	const userMessageArray = message.content.split(' ');
-	const requestedCommand = userMessageArray[0];
+	const requestedCommand = userMessageArray[0].slice(commandsPrefix.length);
 	const commandArgs = userMessageArray.slice(1);
 
-	if (message.content.startsWith(commandsPrefix)) {
-		const Command = botClient.commands.get(requestedCommand.slice(commandsPrefix.length));
+	if (
+		message.content.startsWith(commandsPrefix)
+		&& botClient.commands.has(requestedCommand)
+	) {
+		const Command = botClient.commands.get(requestedCommand);
 		Command.run(botClient, message, commandArgs, profiles);
 	}
 });

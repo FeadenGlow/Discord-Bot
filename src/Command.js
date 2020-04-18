@@ -1,7 +1,8 @@
 class Command {
-    constructor(name, description = 'без описания') {
+    constructor(name, description = 'без описания', showInHelp = true) {
         this.name = name;
         this.description = description;
+        this.showInHelp = showInHelp;
     }
 
     getName() {
@@ -10,6 +11,10 @@ class Command {
 
     getDescription() {
         return this.description;
+    }
+
+    isShowingInHelp() {
+        return this.showInHelp;
     }
 
     run(botClient, userMessage, commandArgs, profiles) {

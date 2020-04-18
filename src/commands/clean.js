@@ -1,16 +1,32 @@
-const Discord = module.require("discord.js");
-const fs = require("fs");
-module.exports.run = async (bot,message,args) => {
-    try{
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("У вас нет прав");
-    if(args[0]>100) return bot.send("Укажите значение меньше 100");
-    if(args[0]<1) return bot.send("Укажите значение больше 1");
-    message.channel.bulkDelete(args[0]);
-    bot.send(botmessage);
-}catch(err){
-    console.log(err.name)
+const Command = require('../Command');
+
+class Clean extends Command {
+    constructor() {
+        super('чис', 'эта команда удаляет сообщения. Аргументом является число, сколько сообщений надо удалить. Для этого вам нужно быть администратором');
+    }
+
+    run(_, message, commandArgs) {
+        try {
+            const cleanMessagesNum = parseInt(commandArgs[0], 10);
+
+            // TODO: создать менеджер прав пользователя и использовать его тут
+            if (!message.member.hasPermission('MANAGE_MESSAGES')) {
+                return message.channel.send('Для выполнения команды надо быть администратором');
+            }
+
+            if (cleanMessagesNum > 100) {
+                return message.channel.send('Укажите значение меньше 100');
+            }
+            else if (cleanMessagesNum < 1) {
+                return message.channel.send('Укажите значение больше 1');
+            }
+
+            return message.channel.bulkDelete(cleanMessagesNum+1);
+        }
+        catch (err) {
+            return console.log(`Не удалось выполнить команду!\nИмя ошибки: ${err.name}`)
+        }
+    }
 }
-};
-module.exports.help = {
-    name: "чис"
-};
+
+module.exports = Clean;

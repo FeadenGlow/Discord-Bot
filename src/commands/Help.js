@@ -1,7 +1,7 @@
 const Command = require('../Command');
 
 const { getEmbedMessage } = require('../embedManager');
-const { commandsPrefix } = require('../data/botConfig.json');
+const { commandsPrefix } = require('../../data/botConfig.json');
 
 class Help extends Command {
     constructor() {
@@ -15,14 +15,17 @@ class Help extends Command {
             // Данное условие было написано в целях временной обратной совместимости
 		    // TODO: после окончания рефакторинга убрать содержание if-а
             if (command.help) {
-                return `${commandStart} - без описания (старая версия)`;
+                return `${commandStart} - без описания (старая версия)\n`;
             }
             else {
-                return `${commandStart} - ${command.getDescription()}`;
+                if (command.isShowingInHelp()) {
+                    return `${commandStart} - ${command.getDescription()}\n`;
+                }
             }
-        });
+            return null;
+        }).filter(command => command !== null);
 
-        const embed = getEmbedMessage(embedBody, 'HELP!', 0xff0000);
+        const embed = getEmbedMessage(embedBody, 'HELP!', '#ff0000');
         return message.channel.send(embed);
     }
 }
