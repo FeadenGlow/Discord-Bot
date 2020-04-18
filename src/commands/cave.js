@@ -1,3 +1,5 @@
+// TODO: не показывать в списке команд в .хелп
+
 const Discord = module.require("discord.js");
 const fs = require("fs");
 module.exports.run = async (bot, message, args,profile)=>{
